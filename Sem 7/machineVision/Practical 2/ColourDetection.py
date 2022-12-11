@@ -49,10 +49,12 @@ while (cap.isOpened()):
     mask2 = cv2.bitwise_not(mask1)
 
     ## Segment the red color part out of the frame using bitwise and with the inverted mask
-    res1 = cv2.bitwise_and(img, img, mask=mask1)
+    res1 = cv2.bitwise_and(img, img, mask=mask2)
+
+    ## Interchange mask1 and mask2 in 52 and 57 for reverse effect
 
     ## Create image showing static background frame pixels only for the masked region
-    res2 = cv2.bitwise_and(background, background, mask=mask2)
+    res2 = cv2.bitwise_and(background, background, mask=mask1)
 
     ## Generating the final output and writing
     finalOutput = cv2.addWeighted(res1, 1, res2, 1, 0)

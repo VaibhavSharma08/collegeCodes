@@ -24,28 +24,6 @@ while True:
     for (x, y, w, h) in faces:
         img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
 
-    # hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    #
-    # ## Generate masks to detect red color
-    # lower_red = np.array([0, 120, 50])
-    # upper_red = np.array([10, 255, 255])
-    # mask1 = cv2.inRange(hsv, lower_red, upper_red)
-    #
-    # lower_red = np.array([170, 120, 70])
-    # upper_red = np.array([180, 255, 255])
-    # mask2 = cv2.inRange(hsv, lower_red, upper_red)
-    #
-    # mask1 = mask1 + mask2
-    #
-    # ## Open and Dilate the mask image
-    # mask1 = cv2.morphologyEx(mask1, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
-    # mask1 = cv2.morphologyEx(mask1, cv2.MORPH_DILATE, np.ones((3, 3), np.uint8))
-    #
-    # ## Create an inverted mask to segment out the red color from the frame
-    # mask2 = cv2.bitwise_not(mask1)
-    #
-    # ## Segment the red color part out of the frame using bitwise and with the inverted mask
-    # res1 = cv2.bitwise_and(img, img, mask=mask2)
     '''
     # detecting eyes
     eyes = eyeCascade.detectMultiScale(imgGray)

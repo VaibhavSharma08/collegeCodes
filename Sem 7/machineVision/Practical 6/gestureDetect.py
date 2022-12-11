@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 import math
-import pyautogui
+# import pyautogui
 
 # Open Camera
 capture = cv2.VideoCapture(0)
