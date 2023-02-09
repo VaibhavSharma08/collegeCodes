@@ -32,8 +32,8 @@ fig = plt.figure(figsize = (8,8))
 ax = plt.axes(projection="3d")
 ax.set_xlabel('Principal Component 1', fontsize = 15)
 ax.set_ylabel('Principal Component 2', fontsize = 15)
-ax.set_zlabel("pc3")
-ax.set_title('2 Component PCA', fontsize = 20)
+ax.set_zlabel("Principal Component 3")
+ax.set_title('3 Component PCA', fontsize = 20)
 
 
 targets = ['7', '8']

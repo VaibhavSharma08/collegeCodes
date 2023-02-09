@@ -8,6 +8,7 @@ import pandas as pd
 flag = False
 yDictInv = None
 xDict = None
+preprocessFlag = False
 
 
 def formatting(data):
@@ -46,11 +47,13 @@ def formatting(data):
 
 def preprocess(dataset):
     global flag
-    # TO DO - Implement the preprocessing part
     maxLen = -1
 
     for i in range(0, len(dataset)):
-        dataset[i] = formatting(dataset[i])
+        if preprocessFlag:
+            dataset[i] = formatting(dataset[i])
+        else:
+            dataset[i] = dataset[i].split(" ")
         maxLen = max(maxLen, len(dataset[i]))
 
     for i in range(0, len(dataset)):

@@ -9,7 +9,7 @@ from surprise import KNNWithMeans
 
 df = pd.read_csv('ratings_Digital_Music.csv')
 # df = df[["user", "item", "rating"]]
-df = df[:40000]
+df = df[:80000]
 reader = Reader(rating_scale=(1, 5))
 data = Dataset.load_from_df(df[["user", "item", "rating"]], reader)
 # print(df[["user", "item", "rating"]])
@@ -18,12 +18,23 @@ print(df.head(5))
 
 sim_options = {
     "name": "pearson",
-    "user_based": True,  # Compute  similarities between items
+    "user_based": False,  # Compute  similarities between items
 }
 algo = KNNWithMeans(sim_options=sim_options)
 trainingSet = data.build_full_trainset()
 algo.fit(trainingSet)
-prediction = algo.predict(uid='A23MKKC68TTTF6', iid='5555991584')
-print(prediction)
+print(trainingSet.to_raw_iid(2200))
+# print(trainingSet.to_inner_iid('5555991584'))
+neigh = algo.get_neighbors(2200, 5)
+print(neigh)
+for i in neigh:
+    print("Item - {}".format(trainingSet.to_raw_iid(i)))
+    prediction = algo.predict(uid='A2B8YOF6EN4VB7', iid=trainingSet.to_raw_iid(i))
+    # print(type(prediction))
+    # prediction.
+    print("Predicted Rating - {}".format(prediction[3]))
+# prediction = algo.predict(uid='A2B8YOF6EN4VB7', iid='5555991584')
+# print(prediction)
 
-
+# user: A23MKKC68TTTF6 item: 5555991584 r_ui = None   est = 4.00   {'actual_k': 1, 'was_impossible': False}
+# user: A2B8YOF6EN4VB7 item: 5555991584 r_ui = None   est = 5.00   {'actual_k': 0, 'was_impossible': False}
